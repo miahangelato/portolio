@@ -4,7 +4,6 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Github, Linkedin, Mail, Send } from "lucide-react";
 import { toast } from "sonner";
-import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -19,30 +18,29 @@ const Contact = () => {
     setIsLoading(true);
 
     try {
-      // EmailJS configuration
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+      // Web3Forms - Simplest email solution
+      const formDataObj = new FormData();
+      formDataObj.append("access_key", "a7d63267-c3e9-4584-9935-172e97ff6794");
+      formDataObj.append("name", formData.name);
+      formDataObj.append("email", formData.email);
+      formDataObj.append("message", formData.message);
+      formDataObj.append("cc", "mmto@student.hau.edu.ph"); // Copy to student email
+      formDataObj.append("subject", `Portfolio Contact from ${formData.name}`);
+      formDataObj.append("from_name", "Portfolio Contact Form");
 
-      if (!serviceId || !templateId || !publicKey) {
-        throw new Error("EmailJS configuration is missing. Please check your environment variables.");
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formDataObj,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success("Message sent successfully! I'll get back to you soon.");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        throw new Error(data.message || "Failed to send message");
       }
-
-      // Email template parameters
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        message: formData.message,
-        to_email: "to.miahangela@gmail.com", // Primary email
-        to_email_2: "mmto@student.hau.edu.ph", // Secondary email
-        reply_to: formData.email,
-      };
-
-      // Send email using EmailJS
-      await emailjs.send(serviceId, templateId, templateParams, publicKey);
-      
-      toast.success("Message sent successfully! I'll get back to you soon.");
-      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       console.error("Failed to send email:", error);
       toast.error("Failed to send message. Please try again or contact me directly via email.");
