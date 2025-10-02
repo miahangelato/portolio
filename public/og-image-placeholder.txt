@@ -1,0 +1,17 @@
+# Create your own OG image (1200x630px) with:
+# - Your name: "Miah Angela To"
+# - Title: "Full-Stack Developer"
+# - Technologies: Django, React, Python, ML
+# - Background: Professional design matching your portfolio theme
+# - Save as: og-image.png in the /public folder
+
+# For now, you can use a simple text-based placeholder or create using:
+# - Canva.com (free design tool)
+# - Figma (professional design)
+# - Online OG image generators
+# - Photoshop/GIMP
+
+# Recommended text:
+# Main heading: "Miah Angela To"
+# Subheading: "Computer Engineering Student"
+# Bottom text: "Full-Stack Developer | Django • React • Python • ML"
