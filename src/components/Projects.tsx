@@ -16,7 +16,7 @@ interface Project {
 const projects: Project[] = [
   {
     title: "SimpleProjex",
-    description: "Core contributor to the MVP development, architecting both frontend interfaces and backend logic for this project management platform. Focused on delivering a seamless user experience and scalable system architecture.",
+    description: "Contributed to the MVP development, helping build both frontend interfaces and backend logic for this project management platform. Focused on delivering a seamless user experience and scalable system architecture.",
     tech: ["React", "Node.js", "Full-Stack", "MVP Development", "UI/UX", "System Design"],
     live: "https://simpleprojex.com/",
     featured: true,
