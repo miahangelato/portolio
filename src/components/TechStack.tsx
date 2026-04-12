@@ -1,165 +1,255 @@
-const techStack = {
-  frontend: [
-    "React", "NextJS", "TypeScript", "JavaScript", 
-    "HTML5", "CSS", "Tailwind CSS", "Bootstrap", "ShadCN", "Redux"
-  ],
-  backend: [
-    "Django", "Python", "Redis", "SQLite", 
-    "PostgreSQL", "REST APIs", "WebSockets", "AWS S3 Bucket",
-  ],
-  aiml: [
-    "PyTorch", "TensorFlow", "Scikit-learn", "NumPy", 
-    "Pandas", , "Machine Learning", "Data Science"
-  ],
-  tools: [
-    "Git", "VS Code", "Postman", "GitHub", 
-    "Heroku", "Chrome DevTools", "npm", "Postman", "Railway", "Vercel"
-  ]
-};
+import { useState, useEffect } from "react";
+import { 
+  Monitor, Server, Brain, Wrench, Code, Database, 
+  GitBranch, Cloud, Terminal, Cpu, Palette, Zap
+} from "lucide-react";
+
+const techCategories = [
+  {
+    id: "frontend",
+    title: "Frontend",
+    description: "Modern frontend development with React ecosystem",
+    icon: <Monitor className="w-8 h-8" />,
+    gradient: "from-blue-500 to-cyan-600",
+    tech: [
+      { name: "React", level: 90 },
+      { name: "TypeScript", level: 85 },
+      { name: "JavaScript", level: 95 },
+      { name: "Tailwind CSS", level: 90 },
+      { name: "HTML5", level: 95 },
+      { name: "CSS", level: 90 },
+      { name: "NextJS", level: 80 },
+      { name: "Redux", level: 75 },
+      { name: "Bootstrap", level: 70 },
+      { name: "ShadCN", level: 85 }
+    ]
+  },
+  {
+    id: "backend",
+    title: "Backend",
+    description: "Django framework and database management",
+    icon: <Server className="w-8 h-8" />,
+    gradient: "from-green-500 to-emerald-600",
+    tech: [
+      { name: "Django", level: 90 },
+      { name: "Python", level: 95 },
+      { name: "Redis", level: 80 },
+      { name: "SQLite", level: 85 },
+      { name: "PostgreSQL", level: 75 },
+      { name: "REST APIs", level: 90 },
+      { name: "WebSockets", level: 70 },
+      { name: "AWS S3", level: 65 }
+    ]
+  },
+  {
+    id: "aiml",
+    title: "AI & ML",
+    description: "Machine learning and data science technologies",
+    icon: <Brain className="w-8 h-8" />,
+    gradient: "from-purple-500 to-pink-600",
+    tech: [
+      { name: "PyTorch", level: 75 },
+      { name: "TensorFlow", level: 70 },
+      { name: "Scikit-learn", level: 80 },
+      { name: "NumPy", level: 85 },
+      { name: "Pandas", level: 85 },
+      { name: "Machine Learning", level: 80 },
+      { name: "Data Science", level: 85 }
+    ]
+  },
+  {
+    id: "tools",
+    title: "Tools & Services",
+    description: "Development tools and version control",
+    icon: <Wrench className="w-8 h-8" />,
+    gradient: "from-orange-500 to-red-600",
+    tech: [
+      { name: "Git", level: 90 },
+      { name: "VS Code", level: 95 },
+      { name: "GitHub", level: 90 },
+      { name: "Postman", level: 85 },
+      { name: "Heroku", level: 80 },
+      { name: "Vercel", level: 85 },
+      { name: "Railway", level: 75 },
+      { name: "npm", level: 90 },
+      { name: "Chrome DevTools", level: 85 }
+    ]
+  }
+];
 
 const TechStack = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [hoveredTech, setHoveredTech] = useState<string | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const element = document.getElementById('tech-stack');
+    if (element) observer.observe(element);
+    
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="tech-stack" className="py-24 bg-muted relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+    <section id="tech-stack" className="py-0 bg-gradient-hero relative overflow-hidden flex flex-col justify-center">
+      {/* Enhanced Background Elements */}
+      <div className="absolute top-0 left-0 text-[15rem] md:text-[25rem] font-black text-black/[0.01] leading-none select-none -z-10 translate-y-[-10%] translate-x-[-10%] uppercase tracking-tighter">
+        Stack
+      </div>
       
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Header - Right Aligned */}
-          <div className="max-w-3xl ml-auto mb-16 animate-slide-in-right text-right">
-            <p className="text-accent font-medium tracking-wider uppercase text-sm mb-4">
-              Technical Skills
-            </p>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6">
+      {/* Floating Particles and Themed Icons to match Hero armosphere */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[15%] right-[5%] animate-pulse opacity-10 text-accent/30 blur-[1px]">
+          <Zap className="w-12 h-12 rotate-12" />
+        </div>
+        <div className="absolute bottom-[20%] left-[8%] animate-bounce opacity-10 text-accent/25 blur-[2px]" style={{ animationDuration: '5s' }}>
+          <Code className="w-14 h-14 -rotate-12" />
+        </div>
+        
+        {/* Glittering Dots */}
+        {[...Array(10)].map((_, i) => (
+          <div 
+            key={i}
+            className="absolute rounded-full bg-accent/20 animate-pulse"
+            style={{
+              width: Math.random() * 3 + 1 + 'px',
+              height: Math.random() * 3 + 1 + 'px',
+              top: Math.random() * 100 + '%',
+              left: Math.random() * 100 + '%',
+              animationDelay: Math.random() * 3 + 's'
+            }}
+          />
+        ))}
+      </div>
+      
+      <div className="container mx-auto px-4 lg:px-12 relative z-10 pt-10">
+        <div className="max-w-[95rem] mx-auto">
+          {/* Enhanced Section Header */}
+          <div className={`text-center mb-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full backdrop-blur-md bg-white/40 border border-white/50 text-accent font-black text-[10px] uppercase tracking-widest mb-4 shadow-sm hover:scale-105 transition-transform">
+              <Zap className="w-3.5 h-3.5 fill-accent" /> Technical Skills
+            </div>
+            
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black text-[#1a1a1a] leading-tight tracking-tighter mb-4">
               Tech Stack &
-              <span className="block text-accent">Expertise</span>
+              <span className="block gradient-text italic">Expertise</span>
             </h2>
-            <p className="text-lg text-muted-foreground">
+            
+            <p className="text-base text-[#1a1a1a]/60 leading-relaxed font-semibold max-w-2xl mx-auto">
               Technologies and frameworks I've mastered through hands-on experience 
               in full-stack development and machine learning projects.
             </p>
           </div>
 
-          {/* Tech Categories */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Frontend */}
-            <div className="space-y-6 animate-fade-in" style={{ animationDelay: '100ms' }}>
-              <div className="space-y-3">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-accent flex items-center justify-center shadow-elegant">
-                  <svg className="w-8 h-8 text-accent-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h3 className="font-display text-2xl font-bold text-primary">
-                  Frontend
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  Modern frontend development with React ecosystem
-                </p>
-              </div>
-              
-              <div className="flex flex-wrap gap-2">
-                {techStack.frontend.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-4 py-2 bg-card text-card-foreground rounded-lg text-sm font-medium shadow-card border border-border hover:border-accent hover:shadow-elegant transition-all duration-300 cursor-default"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
+          {/* Interactive Tech Categories */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {techCategories.map((category, index) => (
+              <div
+                key={category.id}
+                className={`group relative transition-all duration-700 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+                }`}
+                style={{ animationDelay: `${index * 150}ms` }}
+                onMouseEnter={() => setSelectedCategory(category.id)}
+                onMouseLeave={() => setSelectedCategory(null)}
+              >
+                {/* Category Card */}
+                <div className="backdrop-blur-md bg-white/60 border border-white/40 rounded-[2rem] p-6 h-full hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2">
+                  {/* Icon Header */}
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${category.gradient} text-white flex items-center justify-center mb-5 shadow-sm group-hover:scale-110 transition-transform`}>
+                    {category.icon}
+                  </div>
+                  
+                  <h3 className="font-display text-2xl font-black text-[#1a1a1a] mb-2">
+                    {category.title}
+                  </h3>
+                  
+                  <p className="text-[#1a1a1a]/40 font-bold text-xs mb-6 leading-tight">
+                    {category.description}
+                  </p>
 
-            {/* Backend */}
-            <div className="space-y-6 animate-fade-in" style={{ animationDelay: '200ms' }}>
-              <div className="space-y-3">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-accent flex items-center justify-center shadow-elegant">
-                  <svg className="w-8 h-8 text-accent-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
-                  </svg>
+                  {/* Tech Stack List */}
+                  <div className="space-y-4">
+                    {category.tech.map((tech, techIndex) => (
+                      <div
+                        key={tech.name}
+                        className="relative group/tech"
+                        onMouseEnter={() => setHoveredTech(tech.name)}
+                        onMouseLeave={() => setHoveredTech(null)}
+                      >
+                        <div className="flex items-center justify-between mb-2">
+                          <span className={`text-sm font-black tracking-tight transition-colors flex-1 mr-3 ${
+                            hoveredTech === tech.name ? 'text-accent' : 'text-[#1a1a1a]'
+                          }`}>
+                            {tech.name}
+                          </span>
+                          <span className="text-[10px] font-black uppercase tracking-widest text-accent/60 bg-accent/5 px-2 py-0.5 rounded-md">
+                            {tech.level}%
+                          </span>
+                        </div>
+                        <div className="h-1.5 w-full bg-black/5 rounded-full overflow-hidden shadow-inner relative">
+                          <div 
+                            className="h-full bg-gradient-to-r from-accent/80 to-accent rounded-full transition-all duration-1000 delay-300 shadow-sm"
+                            style={{ 
+                              width: isVisible ? `${tech.level}%` : '0%'
+                            }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <h3 className="font-display text-2xl font-bold text-primary">
-                  Backend
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  Django framework and database management
-                </p>
-              </div>
-              
-              <div className="flex flex-wrap gap-2">
-                {techStack.backend.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-4 py-2 bg-card text-card-foreground rounded-lg text-sm font-medium shadow-card border border-border hover:border-accent hover:shadow-elegant transition-all duration-300 cursor-default"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
 
-            {/* AI & Machine Learning */}
-            <div className="space-y-6 animate-fade-in" style={{ animationDelay: '300ms' }}>
-              <div className="space-y-3">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-accent flex items-center justify-center shadow-elegant">
-                  <svg className="w-8 h-8 text-accent-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  </svg>
-                </div>
-                <h3 className="font-display text-2xl font-bold text-primary">
-                  AI & ML
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  Machine learning and data science technologies
-                </p>
+                {/* Floating Particles on Hover */}
+                {selectedCategory === category.id && (
+                  <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute top-4 right-4 w-2 h-2 bg-accent/40 rounded-full animate-pulse" />
+                    <div className="absolute bottom-4 left-4 w-3 h-3 bg-accent/30 rounded-full animate-pulse animation-delay-200" />
+                    <div className="absolute top-1/2 right-8 w-2 h-2 bg-accent/35 rounded-full animate-pulse animation-delay-400" />
+                  </div>
+                )}
               </div>
-              
-              <div className="flex flex-wrap gap-2">
-                {techStack.aiml.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-4 py-2 bg-card text-card-foreground rounded-lg text-sm font-medium shadow-card border border-border hover:border-accent hover:shadow-elegant transition-all duration-300 cursor-default"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
+            ))}
+          </div>
 
-            {/* Tools & Services */}
-            <div className="space-y-6 animate-fade-in" style={{ animationDelay: '400ms' }}>
-              <div className="space-y-3">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-accent flex items-center justify-center shadow-elegant">
-                  <svg className="w-8 h-8 text-accent-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
+          {/* Skills Summary */}
+          <div className={`mt-20 text-center transition-all duration-1000 delay-500 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}>
+            <div className="glass-morphism rounded-3xl p-8 max-w-4xl mx-auto">
+              <h3 className="font-display text-3xl font-black gradient-text mb-6">
+                Core Competencies
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div className="text-center">
+                  <div className="text-4xl font-black text-accent mb-2">1+</div>
+                  <div className="text-sm text-[#1a1a1a]/60 font-black uppercase tracking-tighter">Year Pro Exp</div>
                 </div>
-                <h3 className="font-display text-2xl font-bold text-primary">
-                  Tools & Services
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  Development tools and version control
-                </p>
-              </div>
-              
-              <div className="flex flex-wrap gap-2">
-                {techStack.tools.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-4 py-2 bg-card text-card-foreground rounded-lg text-sm font-medium shadow-card border border-border hover:border-accent hover:shadow-elegant transition-all duration-300 cursor-default"
-                  >
-                    {tech}
-                  </span>
-                ))}
+                <div className="text-center">
+                  <div className="text-4xl font-black text-accent mb-2">10+</div>
+                  <div className="text-sm text-[#1a1a1a]/60 font-black uppercase tracking-tighter">Completed Projects</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl font-black text-accent mb-2">100%</div>
+                  <div className="text-sm text-[#1a1a1a]/60 font-black uppercase tracking-tighter">Delivery Rate</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl font-black text-accent mb-2">AI-Driven</div>
+                  <div className="text-sm text-[#1a1a1a]/60 font-black uppercase tracking-tighter">Solutions</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      
-      {/* Diagonal divider */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-background transform origin-top-right skew-y-2" />
     </section>
   );
 };

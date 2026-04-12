@@ -1,0 +1,18 @@
+{
+  "hero": {
+    "title": "Full-Stack &",
+    "subtitle": "AI Engineer",
+    "description": "Architecting high-performance B2B SaaS solutions and predictive AI models with engineering precision."
+  },
+  "nav": {
+    "about": "About",
+    "projects": "Projects",
+    "tech": "Stack",
+    "contact": "Contact"
+  },
+  "about": {
+    "header": "About Me",
+    "title": "Engineering Elegance In Every Byte.",
+    "description": "As a Computer Engineering student at Holy Angel University, I specialize in bridging complex backend logic with calm, intuitive interfaces. My focus lies in developing scalable B2B SaaS platforms and integrating AI-driven predictive models into real-world applications."
+  }
+}

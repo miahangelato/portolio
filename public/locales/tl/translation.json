@@ -1,0 +1,18 @@
+{
+  "hero": {
+    "title": "Full-Stack at",
+    "subtitle": "AI Engineer",
+    "description": "Nag-aarkitekto ng high-performance na B2B SaaS solutions at predictive AI models na may engineering precision."
+  },
+  "nav": {
+    "about": "Tungkol sa Akin",
+    "projects": "Mga Proyekto",
+    "tech": "Kakayahan",
+    "contact": "Makipag-ugnayan"
+  },
+  "about": {
+    "header": "Tungkol sa Akin",
+    "title": "Engineering Elegance Sa Bawat Byte.",
+    "description": "Bilang isang estudyante ng Computer Engineering sa Holy Angel University, dalubhasa ako sa pag-uugnay ng kumplikadong backend logic sa kalmado at madaling gamiting interface. Ang aking pokus ay nasa pagbuo ng scalable na B2B SaaS platforms at pag-integrate ng AI-driven predictive models sa mga real-world application."
+  }
+}
