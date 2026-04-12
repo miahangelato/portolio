@@ -15,6 +15,15 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "SimpleProjex",
+    description: "Core contributor to the MVP development, architecting both frontend interfaces and backend logic for this project management platform. Focused on delivering a seamless user experience and scalable system architecture.",
+    tech: ["React", "Node.js", "Full-Stack", "MVP Development", "UI/UX", "System Design"],
+    live: "https://simpleprojex.com/",
+    featured: true,
+    category: "Full-Stack",
+    difficulty: "Advanced"
+  },
+  {
     title: "AI Fingerprint Health Analyzer (Thesis)",
     description: "Multi-modal AI system for diabetes risk assessment and blood group prediction using fingerprint biometrics. Led end-to-end development: custom dataset collection, hardware integration, neural network training, and full-stack deployment.",
     tech: ["TensorFlow", "Python", "React", "FastAPI", "IoT Hardware", "Data Analysis"],
