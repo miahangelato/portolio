@@ -44,6 +44,16 @@ const projects: Project[] = [
     difficulty: "Intermediate"
   },
   {
+    title: "AI Triage Assistant (Strata Management)",
+    description: "AI-powered intake tool that classifies client enquiries, suggests responses or actions, and surfaces confidence scores. Includes prompt design notes, error handling for vague inputs, and automation-ready outputs for CRM or email routing.",
+    tech: ["AI Triage", "Prompting", "Text Classification", "Confidence Scoring", "UI Prototype", "Workflow Automation"],
+    github: "https://github.com/miahangelato/AI-Triage-Project.git",
+    live: "https://drive.google.com/file/d/1mNw8ZfLZI48YbCOCXj2NXBOAjPO-xanN/view?usp=sharing",
+    featured: true,
+    category: "Full-Stack",
+    difficulty: "Intermediate"
+  },
+  {
     title: "HAUM Marketplace",
     description: "A comprehensive Django-based marketplace platform featuring user profiles, item listings, dashboard management, and real-time conversations. Built with modern web technologies and deployed with full production capabilities.",
     tech: ["Django", "Python", "JavaScript", "CSS", "HTML", "SQLite"],
